@@ -1,11 +1,11 @@
 manifest:
   remotes:
     - name: zmkfirmware
-      url-base: https://github.com/zmkfirmware
+      url-base: https://github.com/drorchen
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: main
+      revision: trackball-support
       import: app/west.yml
   self:
     path: config
