@@ -20,15 +20,17 @@
     };
 };
 
-&spi2 {
+&xiao_spi {
     status = "okay";
-    cs-gpios = <&gpio1 12 GPIO_ACTIVE_LOW>;
-    pmw3360: pmw3360@0 {
-        compatible = "pixart,pmw3360";
+    cs-gpios = <&xiao_d 7 GPIO_ACTIVE_LOW>;
+    trackpad@0 {
+        compatible = "cirque,pinnacle";
         status = "okay";
-        reg = <0>;
-        label = "Pixart PMW3360";
-        irq-gpios = <&gpio1 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        spi-max-frequency = <2000000>;
+        label = "trackpad";
+        reg = <2>;
+        spi-max-frequency = <10000000>;
+        dr-gpios = <&xiao_d 6 GPIO_ACTIVE_HIGH>;
+        rotate-90;
+        sleep;
     };
 };

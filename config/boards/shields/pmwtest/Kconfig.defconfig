@@ -1,7 +1,0 @@
-if SHIELD_PMWTEST
-
-config ZMK_KEYBOARD_NAME
-    default "My Board"
-
-endif
-
