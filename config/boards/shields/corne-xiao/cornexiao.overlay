@@ -22,14 +22,14 @@
 
 &xiao_spi {
     status = "okay";
-    cs-gpios = <&xiao_d 7 GPIO_ACTIVE_LOW>;
+    cs-gpios = <&gpio1 12 GPIO_ACTIVE_LOW>;
     trackpad@0 {
         compatible = "cirque,pinnacle";
         status = "okay";
         label = "trackpad";
-        reg = <2>;
-        spi-max-frequency = <10000000>;
-        dr-gpios = <&xiao_d 6 GPIO_ACTIVE_HIGH>;
+        reg = <0>;
+        spi-max-frequency = <150000>;
+        dr-gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>;
         rotate-90;
         sleep;
     };
