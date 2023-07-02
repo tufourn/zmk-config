@@ -1,7 +1,0 @@
-if SHIELD_CORNEXIAO
-
-config ZMK_KEYBOARD_NAME
-    default "Corne"
-
-endif
-
