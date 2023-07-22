@@ -1,4 +1,4 @@
-#include "corne.dtsi"
+#include "corne-choc-xiao.dtsi"
 
 &kscan0 {
     col-gpios

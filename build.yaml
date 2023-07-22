@@ -14,4 +14,6 @@
 ---
 include:
   - board: seeeduino_xiao_ble
-    shield: hummingbird
+    shield: corne_choc_xiao_left
+  - board: seeeduino_xiao_ble
+    shield: corne_choc_xiao_right
