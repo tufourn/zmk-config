@@ -1,9 +1,7 @@
-config KC70
-    bool "kc70"
+config BOARD_KC70_LEFT
+    bool "kc70_left"
     depends on SOC_NRF52840_QIAA
 
-config KC70_LEFT
-    def_bool $(shields_list_contains,kc70_left)
-
-config KC70_RIGHT
-    def_bool $(shields_list_contains,kc70_right)
+config BOARD_KC70_RIGHT
+    bool "kc70_right"
+    depends on SOC_NRF52840_QIAA

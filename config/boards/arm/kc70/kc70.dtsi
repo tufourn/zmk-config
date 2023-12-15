@@ -1,9 +1,30 @@
+/dts-v1/;
+
+#include <nordic/nrf52840_qiaa.dtsi>
 #include <dt-bindings/zmk/matrix_transform.h>
 
+
 / {
+    model = "kc70";
+    compatible = "tufourn,kc70";
+
     chosen {
+        zephyr,code-partition = &code_partition;
+        zephyr,console = &cdc_acm_uart;
+        zephyr,sram = &sram0;
+        zephyr,flash = &flash0;
         zmk,kscan = &kscan0;
-        zmk,matrix_transform = &default_transform;
+        zmk,battery = &vbatt;
+        zmk,matrix_trnsform = &default_transform;
+    };
+
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+    };
+
+    vbatt: vbatt {
+        compatible = "zmk,battery-nrf-vddh";
+        label = "BATTERY";
     };
 
     default_transform: keymap_transform_0 {
@@ -20,6 +41,14 @@ RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4) RC(0,5) RC(0,6) RC(0,7) RC(0,8) RC(0,9) 
     };
 };
 
+&adc {
+    status = "okay";
+};
+
+&gpiote {
+    status = "okay";
+};
+
 &gpio0 {
     status = "okay";
 };
@@ -32,5 +61,34 @@ RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4) RC(0,5) RC(0,6) RC(0,7) RC(0,8) RC(0,9) 
     status = "okay";
     cdc_acm_uart: cdc_acm_uart {
         compatible = "zephyr,cdc-acm-uart";
+    };
+};
+
+&flash0 {
+    // For more information, see
+    // https://docs.zephyrproject.org/latest/reference/storage/flash_map/flash_map.html
+    partitions {
+        compatible = "fixed-partitions";
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        code_partition: partition@1000 {
+            label = "code_partition";
+            reg = <0x00001000 0x000d3000>;
+        };
+
+        // The flash starting at 0x000d4000 and ending at
+        // 0x000f3fff is reserved for use by the application.
+
+        // Storage partition will be used by FCB/LittleFS/NVS if enabled.
+        storage_partition: partition@d4000 {
+            label = "storage";
+            reg = <0x000d4000 0x00020000>;
+        };
+
+        boot_partition: partition@f4000 {
+            label = "adafruit_boot";
+            reg = <0x000f4000 0x0000c000>;
+        };
     };
 };

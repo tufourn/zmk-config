@@ -13,5 +13,5 @@
 #
 ---
 include:
-  - board: seeeduino_xiao_ble
-    shield: hummingbird
+  - board: kc70_left
+  - board: kc70_right
